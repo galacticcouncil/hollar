@@ -4,4 +4,10 @@ module.exports = {
     enableTimeouts: false,
   },
   configureYulOptimizer: true,
+  solcOptimizerDetails: {
+    yul: true,
+    yulDetails: {
+      optimizerSteps: '',
+    },
+  },
 };

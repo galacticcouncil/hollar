@@ -1,6 +1,6 @@
 import { task } from 'hardhat/config';
 
-import { getPoolConfiguratorProxy } from '@aave/deploy-v3';
+import { getPoolConfiguratorProxy } from '@galacticcouncil/aave-deploy-v3';
 
 task('enable-gho-borrowing', 'Enable variable borrowing on GHO').setAction(async (_, hre) => {
   const { ethers } = hre;

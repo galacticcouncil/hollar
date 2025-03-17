@@ -6,7 +6,7 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import { tEthereumAddress } from './types';
 import { config } from 'dotenv';
 import Bluebird from 'bluebird';
-import { getWalletBalances } from '@aave/deploy-v3';
+import { getWalletBalances } from '@galacticcouncil/aave-deploy-v3';
 
 config();
 

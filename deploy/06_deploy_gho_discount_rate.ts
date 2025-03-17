@@ -4,7 +4,7 @@ const func: DeployFunction = async function ({ getNamedAccounts, deployments, ..
   const { deploy } = deployments;
   const { deployer } = await getNamedAccounts();
 
-  const discountRateStrategy = await deploy('GhoDiscountRateStrategy', {
+  const discountRateStrategy = await deploy('ZeroDiscountRateStrategy', {
     from: deployer,
     args: [],
     log: true,

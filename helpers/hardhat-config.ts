@@ -4,9 +4,10 @@ import {
   FORK,
   FORK_BLOCK_NUMBER,
   getAlchemyKey,
-} from '@aave/deploy-v3';
+} from '@galacticcouncil/aave-deploy-v3';
 import { HardhatNetworkForkingUserConfig } from 'hardhat/types';
 import fs from 'fs';
+import { eHydrationNetwork } from '@galacticcouncil/aave-deploy-v3';
 
 /** HARDHAT NETWORK CONFIGURATION */
 const MNEMONIC = process.env.MNEMONIC || '';
@@ -21,6 +22,8 @@ export const NETWORKS_RPC_URL: Record<string, string> = {
     eEthereumNetwork.goerli
   )}`,
   sepolia: 'https://rpc.sepolia.ethpandaops.io',
+  [eHydrationNetwork.nice]: 'https://rpc.nice.hydration.cloud',
+  [eHydrationNetwork.hydration]: process.env.RPC || 'https://rpc.hydradx.cloud',
 };
 
 const GAS_PRICE_PER_NET: Record<string, number> = {};
@@ -65,10 +68,13 @@ export const hardhatNetworkSettings = {
 };
 
 export const getCommonNetworkConfig = (networkName: string, chainId?: number) => ({
-  url: NETWORKS_RPC_URL[networkName] || '',
+  url: process.env.RPC_URL || NETWORKS_RPC_URL[networkName] || '',
   blockGasLimit: DEFAULT_BLOCK_GAS_LIMIT,
   chainId,
   gasPrice: GAS_PRICE_PER_NET[networkName] || undefined,
+  accounts: [
+    process.env.PRIV_KEY || 'd9b59470b079ffd6a0373c0870dcf7faf8c20f7340b6d05acbeb8a8a8473b131',
+  ],
   ...(!!MNEMONIC && {
     accounts: {
       mnemonic: MNEMONIC,
@@ -77,7 +83,7 @@ export const getCommonNetworkConfig = (networkName: string, chainId?: number) =>
       count: 10,
     },
   }),
-  live: !!LIVE_NETWORKS[networkName],
+  live: LIVE_NETWORKS[networkName] || false,
 });
 
 export function getRemappings() {

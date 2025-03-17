@@ -1,8 +1,12 @@
 import { task } from 'hardhat/config';
 import { ghoTokenConfig } from '../../helpers/config';
 
-import { getPoolConfiguratorProxy, INCENTIVES_PROXY_ID, TREASURY_PROXY_ID } from '@aave/deploy-v3';
-import { ConfiguratorInputTypes } from '@aave/deploy-v3/dist/types/typechain/@aave/core-v3/contracts/interfaces/IPoolConfigurator';
+import {
+  getPoolConfiguratorProxy,
+  INCENTIVES_PROXY_ID,
+  TREASURY_PROXY_ID,
+} from '@galacticcouncil/aave-deploy-v3';
+import { ConfiguratorInputTypes } from '@galacticcouncil/aave-deploy-v3/dist/types/typechain/@aave/core-v3/contracts/interfaces/IPoolConfigurator';
 
 const printReserveInfo = (initReserveEvent) => {
   console.log(`Gho Reserve Initialized`);
@@ -39,12 +43,12 @@ task('initialize-gho-reserve', 'Initialize Gho Reserve').setAction(async (_, hre
     underlyingAsset: ghoToken.address,
     treasury: treasuryAddress,
     incentivesController: incentivesControllerAddress,
-    aTokenName: `Aave Ethereum GHO`,
-    aTokenSymbol: `aEthGHO`,
-    variableDebtTokenName: `Aave Variable Debt Ethereum GHO`,
-    variableDebtTokenSymbol: `variableDebtEthGHO`,
-    stableDebtTokenName: 'Aave Stable Debt Ethereum GHO',
-    stableDebtTokenSymbol: 'stableDebtEthGHO',
+    aTokenName: `aHOLLAR`,
+    aTokenSymbol: `aHOLLAR`,
+    variableDebtTokenName: `Variable Debt HOLLAR`,
+    variableDebtTokenSymbol: `vdHOLLAR`,
+    stableDebtTokenName: 'Stable Debt HOLLAR',
+    stableDebtTokenSymbol: 'sdHOLLAR',
     params: '0x10',
   };
 
