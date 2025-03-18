@@ -53,7 +53,8 @@ task('initialize-gho-reserve', 'Initialize Gho Reserve').setAction(async (_, hre
   };
 
   // Init reserve
-  const initReserveTx = await poolConfigurator.initReserves([reserveInput]);
+  console.log('initializing reserve', reserveInput);
+  const initReserveTx = await poolConfigurator.initReserves([reserveInput], { gasLimit: 10000000 });
 
   const initReserveTxReceipt = await initReserveTx.wait();
   const initReserveEvent = initReserveTxReceipt.events?.find(

@@ -1,45 +1,39 @@
 import { task } from 'hardhat/config';
+import { POOL_ADMIN } from '@galacticcouncil/aave-deploy-v3';
 
 task('hollar-setup', 'Deploy and Configure Hollar').setAction(async (params, hre) => {
-  /*****************************************
-   *          INITIALIZE RESERVE           *
-   ******************************************/
-  blankSpace();
+  await hre.run('network-check');
+  const admin = POOL_ADMIN[hre.network.name];
+  const { deployer } = await hre.getNamedAccounts();
+
+  console.log('DEPLOY CONTRACTS ########################################');
+  if (admin !== deployer) {
+    await hre.run('deploy', {
+      tags: 'full_gho_deploy',
+      noCompile: true,
+    });
+    console.log('transfer ownership to pool admin', admin);
+    await hre.run('gho-transfer-ownership', { newOwner: admin });
+    console.log('rest of the setup has to be done by admin');
+    return;
+  } else {
+    console.log('admin cannot deploy contracts');
+  }
+
+  console.log('INITIALIZE RESERVE ######################################');
   await hre.run('initialize-gho-reserve');
 
-  /*****************************************
-   *          CONFIGURE RESERVE            *
-   * 1. enable borrowing                   *
-   * 2. configure oracle                   *
-   ******************************************/
-  blankSpace();
+  console.log('CONFIGURE RESERVE #######################################');
   await hre.run('enable-gho-borrowing');
-
-  blankSpace();
   await hre.run('set-gho-oracle');
 
-  /******************************************
-   *              CONFIGURE GHO             *
-   * 1. Add aave as a GHO entity            *
-   * 2. Add flashminter as GHO entity       *
-   * 3. Set addresses in AToken and VDebt   *
-   ******************************************/
-  blankSpace();
-
-  blankSpace();
+  console.log('CONFIGURE HOLLAR ########################################');
   await hre.run('add-gho-as-entity');
-
-  blankSpace();
   await hre.run('add-gho-flashminter-as-entity');
-
-  blankSpace();
   await hre.run('set-gho-addresses');
+  await hre.run('set-zero-discount-rate-strategy');
 
-  /******************************************
-   *           PRINT DEPLOYMENT             *
-   ******************************************/
-
-  blankSpace();
+  console.log('DEPLOYMENT ##############################################');
   await hre.run('print-all-deployments');
 });
 

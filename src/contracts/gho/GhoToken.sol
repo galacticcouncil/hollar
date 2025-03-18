@@ -26,7 +26,7 @@ contract GhoToken is ERC20, AccessControl, IGhoToken {
    * @dev Constructor
    * @param admin This is the initial holder of the default admin role
    */
-  constructor(address admin) ERC20('Gho Token', 'GHO', 18) {
+  constructor(address admin) ERC20('Hydrated Dollar', 'HOLLAR', 18) {
     _setupRole(DEFAULT_ADMIN_ROLE, admin);
   }
 

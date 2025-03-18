@@ -8,7 +8,9 @@ task('enable-gho-borrowing', 'Enable variable borrowing on GHO').setAction(async
   const gho = await ethers.getContract('GhoToken');
   const poolConfigurator = await getPoolConfiguratorProxy();
 
-  const enableBorrowingTx = await poolConfigurator.setReserveBorrowing(gho.address, true);
+  const enableBorrowingTx = await poolConfigurator.setReserveBorrowing(gho.address, true, {
+    gasLimit: 1000000,
+  });
 
   const enableBorrowingTxReceipt = await enableBorrowingTx.wait();
 
