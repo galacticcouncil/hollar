@@ -33,7 +33,7 @@ task('hollar-setup', 'Deploy and Configure Hollar').setAction(async (params, hre
   await hre.run('set-gho-addresses');
   await hre.run('set-zero-discount-rate-strategy');
 
-  console.log('DEPLOYMENT ##############################################');
+  console.log('SUMMARY #################################################');
   await hre.run('print-all-deployments');
 });
 
