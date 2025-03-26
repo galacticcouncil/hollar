@@ -1,0 +1,134 @@
+{
+  "address": "0xf8D9C75f060E776b67def028885528430F923602",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "DISCOUNT_RATE",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "GHO_DISCOUNTED_PER_DISCOUNT_TOKEN",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "MIN_DEBT_TOKEN_BALANCE",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "MIN_DISCOUNT_TOKEN_BALANCE",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "debtBalance",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "discountTokenBalance",
+          "type": "uint256"
+        }
+      ],
+      "name": "calculateDiscountRate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x085a57202f28d9a2d57f331dfc1642801235f11112679f07f3bf081c63ed8c42",
+  "receipt": {
+    "to": null,
+    "from": "0x3dC06FAA422A0Cf6014847031dDc1DeC7B63F76a",
+    "contractAddress": "0xf8D9C75f060E776b67def028885528430F923602",
+    "transactionIndex": 0,
+    "gasUsed": "125538",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x63d524f873ec093fb91f8d3c615e27ed9c8951dfc848bf82adfb8d242095a62b",
+    "transactionHash": "0x085a57202f28d9a2d57f331dfc1642801235f11112679f07f3bf081c63ed8c42",
+    "logs": [],
+    "blockNumber": 3758,
+    "cumulativeGasUsed": "125538",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "22fd5720127d14bdc9537a92d31dc9dc",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.10+commit.fc410830\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"DISCOUNT_RATE\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GHO_DISCOUNTED_PER_DISCOUNT_TOKEN\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MIN_DEBT_TOKEN_BALANCE\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MIN_DISCOUNT_TOKEN_BALANCE\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"debtBalance\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"discountTokenBalance\",\"type\":\"uint256\"}],\"name\":\"calculateDiscountRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Aave\",\"kind\":\"dev\",\"methods\":{\"calculateDiscountRate(uint256,uint256)\":{\"params\":{\"debtBalance\":\"The debt balance of the user\",\"discountTokenBalance\":\"The discount token balance of the user\"},\"returns\":{\"_0\":\"The discount rate, as a percentage - the maximum can be 10000 = 100.00%\"}}},\"title\":\"ZeroDiscountRateStrategy\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"calculateDiscountRate(uint256,uint256)\":{\"notice\":\"Calculates the discount rate depending on the debt and discount token balances\"}},\"notice\":\"Discount Rate Strategy that always return zero discount rate.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/contracts/facilitators/aave/interestStrategy/ZeroDiscountRateStrategy.sol\":\"ZeroDiscountRateStrategy\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":100000},\"remappings\":[]},\"sources\":{\"src/contracts/facilitators/aave/interestStrategy/ZeroDiscountRateStrategy.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.10;\\n\\nimport {IGhoDiscountRateStrategy} from '../interestStrategy/interfaces/IGhoDiscountRateStrategy.sol';\\n\\n/**\\n * @title ZeroDiscountRateStrategy\\n * @author Aave\\n * @notice Discount Rate Strategy that always return zero discount rate.\\n */\\ncontract ZeroDiscountRateStrategy is IGhoDiscountRateStrategy {\\n\\n  uint256 public constant GHO_DISCOUNTED_PER_DISCOUNT_TOKEN = 0;\\n  uint256 public constant DISCOUNT_RATE = 0;\\n  uint256 public constant MIN_DISCOUNT_TOKEN_BALANCE = 0;\\n  uint256 public constant MIN_DEBT_TOKEN_BALANCE = 0;\\n\\n  /// @inheritdoc IGhoDiscountRateStrategy\\n  function calculateDiscountRate(\\n    uint256 debtBalance,\\n    uint256 discountTokenBalance\\n  ) external view override returns (uint256) {\\n    return DISCOUNT_RATE;\\n  }\\n}\\n\",\"keccak256\":\"0xa655246a43bdd5080ebfbe6647904792b23bed607e4f432b044ed5428ae88d9f\",\"license\":\"MIT\"},\"src/contracts/facilitators/aave/interestStrategy/interfaces/IGhoDiscountRateStrategy.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\n/**\\n * @title IGhoDiscountRateStrategy\\n * @author Aave\\n * @notice Defines the basic interface of the GhoDiscountRateStrategy\\n */\\ninterface IGhoDiscountRateStrategy {\\n  /**\\n   * @notice Calculates the discount rate depending on the debt and discount token balances\\n   * @param debtBalance The debt balance of the user\\n   * @param discountTokenBalance The discount token balance of the user\\n   * @return The discount rate, as a percentage - the maximum can be 10000 = 100.00%\\n   */\\n  function calculateDiscountRate(\\n    uint256 debtBalance,\\n    uint256 discountTokenBalance\\n  ) external view returns (uint256);\\n}\\n\",\"keccak256\":\"0xa22740aece637afdfa9b207b3fa0211af04ad8e10e4371872160c07d0166cc6a\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060e78061001f6000396000f3fe6080604052348015600f57600080fd5b5060043610605f5760003560e01c806393adbec511604a57806393adbec514607d57806398c4f438146064578063b510c58914606457600080fd5b80633454274e146064578063771a73af146064575b600080fd5b606b600081565b60405190815260200160405180910390f35b606b60883660046090565b600092915050565b6000806040838503121560a257600080fd5b5050803592602090910135915056fea26469706673582212207d3036df1fa79c555706fbd2b7d4d1ad49153c052c72177cbd0da5eadbc8b6d564736f6c634300080a0033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b5060043610605f5760003560e01c806393adbec511604a57806393adbec514607d57806398c4f438146064578063b510c58914606457600080fd5b80633454274e146064578063771a73af146064575b600080fd5b606b600081565b60405190815260200160405180910390f35b606b60883660046090565b600092915050565b6000806040838503121560a257600080fd5b5050803592602090910135915056fea26469706673582212207d3036df1fa79c555706fbd2b7d4d1ad49153c052c72177cbd0da5eadbc8b6d564736f6c634300080a0033",
+  "devdoc": {
+    "author": "Aave",
+    "kind": "dev",
+    "methods": {
+      "calculateDiscountRate(uint256,uint256)": {
+        "params": {
+          "debtBalance": "The debt balance of the user",
+          "discountTokenBalance": "The discount token balance of the user"
+        },
+        "returns": {
+          "_0": "The discount rate, as a percentage - the maximum can be 10000 = 100.00%"
+        }
+      }
+    },
+    "title": "ZeroDiscountRateStrategy",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "calculateDiscountRate(uint256,uint256)": {
+        "notice": "Calculates the discount rate depending on the debt and discount token balances"
+      }
+    },
+    "notice": "Discount Rate Strategy that always return zero discount rate.",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [],
+    "types": null
+  }
+}

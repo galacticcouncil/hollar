@@ -11,5 +11,6 @@
   "Incentives:Hydration:aave-v3-periphery@2.5.2": 1727818190,
   "TokenImplementations:Hydration:aave-v3-core@1.19.3": 1727818383,
   "ReservesInit:Hydration:aave-v3-core@1.19.3": 1727819992,
-  "PeripheryInit:Hydration:aave-v3-periphery@2.5.2": 1727819992
+  "PeripheryInit:Hydration:aave-v3-periphery@2.5.2": 1727819992,
+  "GhoDiscountRateStrategy": 1742394955
 }
