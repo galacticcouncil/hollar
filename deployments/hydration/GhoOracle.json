@@ -1,0 +1,103 @@
+{
+  "address": "0xAF934203b6eF72c256373C2E75E11d50bA8b101d",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "GHO_PRICE",
+      "outputs": [
+        {
+          "internalType": "int256",
+          "name": "",
+          "type": "int256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "latestAnswer",
+      "outputs": [
+        {
+          "internalType": "int256",
+          "name": "",
+          "type": "int256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xd3a23efa1126c908adf39f2125e75c44f630855d29931f404e8d724b494cd353",
+  "receipt": {
+    "to": null,
+    "from": "0x71FeB8b2849101a6E62e3369eaAfDc6154CD0Bc0",
+    "contractAddress": "0xAF934203b6eF72c256373C2E75E11d50bA8b101d",
+    "transactionIndex": 0,
+    "gasUsed": "102480",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xa29c47fd8845011abcdcb37ad0dc5b90c8d7745a719a13049c425fae314edf4a",
+    "transactionHash": "0xd3a23efa1126c908adf39f2125e75c44f630855d29931f404e8d724b494cd353",
+    "logs": [],
+    "blockNumber": 7374,
+    "cumulativeGasUsed": "102480",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "2e488d05c20cc61b064a5f3f9e5b4b77",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.10+commit.fc410830\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"GHO_PRICE\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"latestAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Aave\",\"details\":\"Price fixed at 1 USD, Chainlink format with 8 decimals\",\"kind\":\"dev\",\"methods\":{\"decimals()\":{\"returns\":{\"_0\":\"The number of decimals\"}},\"latestAnswer()\":{\"details\":\"GHO price is fixed at 1 USD\",\"returns\":{\"_0\":\"The price of a unit of GHO (with 8 decimals)\"}}},\"title\":\"GhoOracle\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"decimals()\":{\"notice\":\"Returns the number of decimals the price is formatted with\"},\"latestAnswer()\":{\"notice\":\"Returns the price of a unit of GHO (USD denominated)\"}},\"notice\":\"Price feed for GHO (USD denominated)\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/contracts/facilitators/aave/oracle/GhoOracle.sol\":\"GhoOracle\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":100000},\"remappings\":[]},\"sources\":{\"src/contracts/facilitators/aave/oracle/GhoOracle.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.10;\\n\\n/**\\n * @title GhoOracle\\n * @notice Price feed for GHO (USD denominated)\\n * @dev Price fixed at 1 USD, Chainlink format with 8 decimals\\n * @author Aave\\n */\\ncontract GhoOracle {\\n  int256 public constant GHO_PRICE = 1e8;\\n\\n  /**\\n   * @notice Returns the price of a unit of GHO (USD denominated)\\n   * @dev GHO price is fixed at 1 USD\\n   * @return The price of a unit of GHO (with 8 decimals)\\n   */\\n  function latestAnswer() external pure returns (int256) {\\n    return GHO_PRICE;\\n  }\\n\\n  /**\\n   * @notice Returns the number of decimals the price is formatted with\\n   * @return The number of decimals\\n   */\\n  function decimals() external pure returns (uint8) {\\n    return 8;\\n  }\\n}\\n\",\"keccak256\":\"0x45ddac246c95523aabb216216ae83f94b4e59fb6ac76799ae100e13003f1b520\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060a88061001e6000396000f3fe6080604052348015600f57600080fd5b5060043610603c5760003560e01c8063313ce56714604157806350d25bcd146055578063abe30b30146068575b600080fd5b604051600881526020015b60405180910390f35b6305f5e1005b604051908152602001604c565b605b6305f5e1008156fea26469706673582212204533d05e4ca7ecd8bbe7b301679b70f04ff3508237c5efaf6c374a067c799cfc64736f6c634300080a0033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b5060043610603c5760003560e01c8063313ce56714604157806350d25bcd146055578063abe30b30146068575b600080fd5b604051600881526020015b60405180910390f35b6305f5e1005b604051908152602001604c565b605b6305f5e1008156fea26469706673582212204533d05e4ca7ecd8bbe7b301679b70f04ff3508237c5efaf6c374a067c799cfc64736f6c634300080a0033",
+  "devdoc": {
+    "author": "Aave",
+    "details": "Price fixed at 1 USD, Chainlink format with 8 decimals",
+    "kind": "dev",
+    "methods": {
+      "decimals()": {
+        "returns": {
+          "_0": "The number of decimals"
+        }
+      },
+      "latestAnswer()": {
+        "details": "GHO price is fixed at 1 USD",
+        "returns": {
+          "_0": "The price of a unit of GHO (with 8 decimals)"
+        }
+      }
+    },
+    "title": "GhoOracle",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "decimals()": {
+        "notice": "Returns the number of decimals the price is formatted with"
+      },
+      "latestAnswer()": {
+        "notice": "Returns the price of a unit of GHO (USD denominated)"
+      }
+    },
+    "notice": "Price feed for GHO (USD denominated)",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [],
+    "types": null
+  }
+}

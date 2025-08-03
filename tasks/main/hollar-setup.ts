@@ -324,6 +324,78 @@ task('hollar-setup', 'Deploy and Configure Hollar').setAction(async (params, hre
     ),
   ];
 
+  const flashMinter = await ethers.getContract('GhoFlashMinter');
+  hsm2txs.push(tx.hsm.setFlashMinter(flashMinter.address));
+
+  hsm2txs.push(
+    tx.multiTransactionPayment.addCurrency(222, '10,960,000,000,000,000,000,000'.replace(/,/g, ''))
+  );
+
+  hsm2txs.push(
+    tx.router.forceInsertRoute({ assetIn: 0, assetOut: 222 }, [
+      {
+        pool: 'Omnipool',
+        assetIn: '0',
+        assetOut: '100',
+      },
+      {
+        pool: {
+          Stableswap: '100',
+        },
+        assetIn: '100',
+        assetOut: '10',
+      },
+      {
+        pool: 'Aave',
+        assetIn: '10',
+        assetOut: '1002',
+      },
+      {
+        pool: {
+          Stableswap: '111',
+        },
+        assetIn: '1002',
+        assetOut: '222',
+      },
+    ])
+  );
+
+  hsm2txs.push(
+    tx.router.forceInsertRoute({ assetIn: 20, assetOut: 222 }, [
+      {
+        pool: 'Omnipool',
+        assetIn: '20',
+        assetOut: '100',
+      },
+      {
+        pool: {
+          Stableswap: '100',
+        },
+        assetIn: '100',
+        assetOut: '10',
+      },
+      {
+        pool: {
+          Stableswap: '102',
+        },
+        assetIn: '10',
+        assetOut: '22',
+      },
+      {
+        pool: 'Aave',
+        assetIn: '22',
+        assetOut: '1003',
+      },
+      {
+        pool: {
+          Stableswap: '110',
+        },
+        assetIn: '1003',
+        assetOut: '222',
+      },
+    ])
+  );
+
   txs.push(tx.scheduler.scheduleAfter(0, null, 0, tx.utility.batchAll(txs2)));
   txs.push(tx.scheduler.scheduleAfter(1, null, 0, tx.utility.batchAll(hsmTxs)));
   txs.push(tx.scheduler.scheduleAfter(2, null, 0, tx.utility.batchAll(hsm2txs)));

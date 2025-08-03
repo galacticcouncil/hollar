@@ -11,5 +11,14 @@
   "Incentives:Hydration:aave-v3-periphery@2.5.2": 1731421988,
   "TokenImplementations:Hydration:aave-v3-core@1.19.3": 1731422191,
   "ReservesInit:Hydration:aave-v3-core@1.19.3": 1731422482,
-  "PeripheryInit:Hydration:aave-v3-periphery@2.5.2": 1731422482
+  "PeripheryInit:Hydration:aave-v3-periphery@2.5.2": 1731422482,
+  "GhoToken": 1754178363,
+  "GhoOracle": 1754178373,
+  "GhoAToken": 1754178399,
+  "GhoStableDebt": 1754179058,
+  "GhoVariableDebt": 1754179494,
+  "GhoInterestRateStrategy": 1754179508,
+  "GhoDiscountRateStrategy": 1754179518,
+  "GhoFlashMinter": 1754179622,
+  "UiGhoDataProvider": 1754179632
 }
