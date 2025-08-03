@@ -1,5 +1,10 @@
 import { task } from 'hardhat/config';
-import { getPool, POOL_ADMIN } from '@galacticcouncil/aave-deploy-v3';
+import {
+  getACLManager,
+  getPool,
+  getPoolAddressesProvider,
+  POOL_ADMIN,
+} from '@galacticcouncil/aave-deploy-v3';
 import { getBatch } from '@galacticcouncil/aave-deploy-v3/dist/helpers/transaction-batch';
 import {
   location,
@@ -9,6 +14,7 @@ import {
   rootEvmCall,
 } from '@galacticcouncil/aave-deploy-v3/dist/helpers/hydration-proposal';
 import ProposalDecoder from '@galacticcouncil/aave-deploy-v3/dist/helpers/proposal-decoder';
+import { GhoFlashMinter } from '../../types';
 
 task('hollar-setup', 'Deploy and Configure Hollar').setAction(async (params, hre) => {
   const { ethers } = hre;
@@ -324,8 +330,20 @@ task('hollar-setup', 'Deploy and Configure Hollar').setAction(async (params, hre
     ),
   ];
 
-  const flashMinter = await ethers.getContract('GhoFlashMinter');
+  const flashMinter = (await ethers.getContract('GhoFlashMinter')) as GhoFlashMinter;
   hsm2txs.push(tx.hsm.setFlashMinter(flashMinter.address));
+
+  const hsmOrigin = {
+    system: { Signed: '0x6d6f646c70792f68736d6f640000000000000000000000000000000000000000' },
+  };
+  const hsmAddress = '0x6d6f646c70792f68736d6f640000000000000000';
+
+  hsm2txs.push(tx.utility.dispatchAs(hsmOrigin, tx.evmAccounts.bindEvmAddress()));
+
+  const poolAddressesProvider = await getPoolAddressesProvider();
+  const aclManager = await getACLManager(await poolAddressesProvider.getACLManager());
+  const addFlashBorrower = await aclManager.populateTransaction.addFlashBorrower(hsmAddress);
+  hsm2txs.push(await aaveManagerCall({ ...addFlashBorrower, from: admin }));
 
   hsm2txs.push(
     tx.multiTransactionPayment.addCurrency(222, '10,960,000,000,000,000,000,000'.replace(/,/g, ''))
