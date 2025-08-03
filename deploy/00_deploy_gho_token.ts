@@ -1,5 +1,6 @@
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import { DeployFunction } from 'hardhat-deploy/types';
+import { GhoToken } from '../types';
 
 const func: DeployFunction = async function ({
   getNamedAccounts,
@@ -20,6 +21,12 @@ const func: DeployFunction = async function ({
     log: true,
   });
   console.log(`GHO Address:                   ${ghoResult.address}`);
+
+  const delegatedToken = '0x0000000000000000000000000000000100000000';
+  const ghoToken = (await hre.ethers.getContract('GhoToken')) as GhoToken;
+  const tx = await ghoToken.setDelegatedToken(delegatedToken);
+  await tx.wait();
+  console.log(`Delegated Token Set:           ${delegatedToken}`);
 
   return true;
 };

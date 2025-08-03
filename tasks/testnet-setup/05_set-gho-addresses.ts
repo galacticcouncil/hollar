@@ -1,52 +1,90 @@
 import { task } from 'hardhat/config';
 import {
-  STAKE_AAVE_PROXY,
   TREASURY_PROXY_ID,
   getAaveProtocolDataProvider,
   waitForTx,
+  getPoolConfiguratorProxy,
 } from '@galacticcouncil/aave-deploy-v3';
 import { GhoToken } from '../../../types/src/contracts/gho/GhoToken';
-import { ghoReserveConfig } from '../../helpers/config';
-import {
-  getGhoAToken,
-  getGhoVariableDebtToken,
-  getGhoDiscountRateStrategy,
-} from '../../helpers/contract-getters';
+import { getGhoAToken, getGhoVariableDebtToken } from '../../helpers/contract-getters';
+import { addTransaction } from '@galacticcouncil/aave-deploy-v3/dist/helpers/transaction-batch';
+import { utils } from 'ethers';
 
-task(
-  'set-gho-addresses',
-  'Set addresses as needed in GhoAToken and GhoVariableDebtToken'
-).setAction(async (_, hre) => {
-  const { ethers } = hre;
+task('set-gho-addresses', 'Set addresses as needed in GhoAToken and GhoVariableDebtToken')
+  .addFlag('batch', 'Add transactions to batch instead of executing directly')
+  .setAction(async ({ batch }, hre) => {
+    const { ethers } = hre;
 
-  const gho = (await ethers.getContract('GhoToken')) as GhoToken;
-  const aaveDataProvider = await getAaveProtocolDataProvider();
-  const treasuryAddress = await (await hre.deployments.get(TREASURY_PROXY_ID)).address;
-  const tokenProxyAddresses = await aaveDataProvider.getReserveTokensAddresses(gho.address);
-  const ghoAToken = await getGhoAToken(tokenProxyAddresses.aTokenAddress);
-  const ghoVariableDebtToken = await getGhoVariableDebtToken(
-    tokenProxyAddresses.variableDebtTokenAddress
-  );
+    const gho = (await ethers.getContract('GhoToken')) as GhoToken;
+    const treasuryAddress = await (await hre.deployments.get(TREASURY_PROXY_ID)).address;
 
-  // Set treasury
-  const setTreasuryTxReceipt = await waitForTx(await ghoAToken.updateGhoTreasury(treasuryAddress));
-  console.log(
-    `GhoAToken treasury set to: ${treasuryAddress} in tx: ${setTreasuryTxReceipt.transactionHash}`
-  );
+    let ghoAToken, ghoVariableDebtToken;
+    if (!batch) {
+      const aaveDataProvider = await getAaveProtocolDataProvider();
+      const tokenProxyAddresses = await aaveDataProvider.getReserveTokensAddresses(gho.address);
+      ghoAToken = await getGhoAToken(tokenProxyAddresses.aTokenAddress);
+      ghoVariableDebtToken = await getGhoVariableDebtToken(
+        tokenProxyAddresses.variableDebtTokenAddress
+      );
+    } else {
+      const poolConfigurator = await getPoolConfiguratorProxy();
+      const nonce = await hre.ethers.provider.getTransactionCount(poolConfigurator.address);
 
-  // Set variable debt token in AToken
-  const setVariableDebtTxReceipt = await waitForTx(
-    await ghoAToken.setVariableDebtToken(tokenProxyAddresses.variableDebtTokenAddress)
-  );
-  console.log(
-    `GhoAToken variableDebtContract set to: ${tokenProxyAddresses.variableDebtTokenAddress} in tx: ${setVariableDebtTxReceipt.transactionHash}`
-  );
+      ghoAToken = await getGhoAToken(
+        utils.getContractAddress({
+          from: poolConfigurator.address,
+          nonce: nonce,
+        })
+      );
+      ghoVariableDebtToken = await getGhoVariableDebtToken(
+        utils.getContractAddress({
+          from: poolConfigurator.address,
+          nonce: nonce + 2, // +1 is stable debt token, +2 is variable debt token
+        })
+      );
+    }
 
-  // Set AToken in variable debt token
-  const setATokenTxReceipt = await waitForTx(
-    await ghoVariableDebtToken.setAToken(tokenProxyAddresses.aTokenAddress)
-  );
-  console.log(
-    `VariableDebtToken aToken set to: ${tokenProxyAddresses.aTokenAddress} in tx: ${setATokenTxReceipt.transactionHash}`
-  );
-});
+    // Set treasury
+    if (batch) {
+      const txTreasury = await ghoAToken.populateTransaction.updateGhoTreasury(treasuryAddress);
+      addTransaction(txTreasury);
+      console.log(`Added GhoAToken treasury update to batch`);
+    } else {
+      const setTreasuryTxReceipt = await waitForTx(
+        await ghoAToken.updateGhoTreasury(treasuryAddress)
+      );
+      console.log(
+        `GhoAToken treasury set to: ${treasuryAddress} in tx: ${setTreasuryTxReceipt.transactionHash}`
+      );
+    }
+
+    // Set variable debt token in AToken
+    if (batch) {
+      const txVariableDebt = await ghoAToken.populateTransaction.setVariableDebtToken(
+        ghoVariableDebtToken.address
+      );
+      addTransaction(txVariableDebt);
+      console.log(`Added GhoAToken variableDebtContract update to batch`);
+    } else {
+      const setVariableDebtTxReceipt = await waitForTx(
+        await ghoAToken.setVariableDebtToken(ghoVariableDebtToken.address)
+      );
+      console.log(
+        `GhoAToken variableDebtContract set to: ${ghoVariableDebtToken.address} in tx: ${setVariableDebtTxReceipt.transactionHash}`
+      );
+    }
+
+    // Set AToken in variable debt token
+    if (batch) {
+      const txAToken = await ghoVariableDebtToken.populateTransaction.setAToken(ghoAToken.address);
+      addTransaction(txAToken);
+      console.log(`Added VariableDebtToken aToken update to batch`);
+    } else {
+      const setATokenTxReceipt = await waitForTx(
+        await ghoVariableDebtToken.setAToken(ghoAToken.address)
+      );
+      console.log(
+        `VariableDebtToken aToken set to: ${ghoAToken.address} in tx: ${setATokenTxReceipt.transactionHash}`
+      );
+    }
+  });

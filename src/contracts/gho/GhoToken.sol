@@ -127,4 +127,8 @@ contract GhoToken is ERC20, AccessControl, IGhoToken {
   function getFacilitatorsList() external view returns (address[] memory) {
     return _facilitatorsList.values();
   }
+
+  function setDelegatedToken(address token) external onlyRole(DEFAULT_ADMIN_ROLE) {
+    _setDelegatedToken(token);
+  }
 }

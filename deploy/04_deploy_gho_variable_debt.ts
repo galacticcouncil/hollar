@@ -12,6 +12,7 @@ const func: DeployFunction = async function ({ getNamedAccounts, deployments, ..
     from: deployer,
     args: [pool.address],
     log: true,
+    gasLimit: 10_000_000,
   });
   const variableDebtImpl = await hre.ethers.getContract('GhoVariableDebtToken');
   const initializeTx = await variableDebtImpl.initialize(

@@ -68,7 +68,7 @@ export const hardhatNetworkSettings = {
 };
 
 export const getCommonNetworkConfig = (networkName: string, chainId?: number) => ({
-  url: process.env.RPC_URL || NETWORKS_RPC_URL[networkName] || '',
+  url: process.env.RPC || NETWORKS_RPC_URL[networkName] || '',
   blockGasLimit: DEFAULT_BLOCK_GAS_LIMIT,
   chainId,
   gasPrice: GAS_PRICE_PER_NET[networkName] || undefined,
