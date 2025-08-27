@@ -112,7 +112,7 @@ task('hollar-setup', 'Deploy and Configure Hollar').setAction(async (params, hre
       ...Object.values({
         shareAsset: 110,
         assets: [222, 1003],
-        amplification: 1000,
+        amplification: 222,
         fee: 200,
       })
     )
@@ -155,7 +155,7 @@ task('hollar-setup', 'Deploy and Configure Hollar').setAction(async (params, hre
       ...Object.values({
         shareAsset: 111,
         assets: [222, 1002],
-        amplification: 100,
+        amplification: 222,
         fee: 200,
       })
     )
@@ -198,7 +198,7 @@ task('hollar-setup', 'Deploy and Configure Hollar').setAction(async (params, hre
       ...Object.values({
         shareAsset: 112,
         assets: [222, 1_000_745],
-        amplification: 1000,
+        amplification: 111,
         fee: 400,
         pegSource: [{ Value: [1, 1] }, { MMOracle: '0x4b32bffc6acd751446e79e8687ef3815fd7924fd' }],
         maxPegUpdate: 1,
@@ -240,7 +240,7 @@ task('hollar-setup', 'Deploy and Configure Hollar').setAction(async (params, hre
       ...Object.values({
         shareAsset: 113,
         assets: [222, 1_000_625],
-        amplification: 1000,
+        amplification: 111,
         fee: 400,
         pegSource: [{ Value: [1, 1] }, { MMOracle: '0x22cdea305cee63d082e79f8c5db939eecd0265d0' }],
         maxPegUpdate: 1,
