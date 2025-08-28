@@ -14,10 +14,10 @@ export const ghoReserveConfig = {
 export const ghoEntityConfig = {
   label: 'Hydration Market',
   entityAddress: ZERO_ADDRESS,
-  mintLimit: ethers.utils.parseUnits('5.5', 24), // 5.5M
+  mintLimit: ethers.utils.parseUnits('2.0', 24), // 5.5M
   flashMinterLabel: 'HOLLAR FlashMinter',
   flashMinterCapacity: ethers.utils.parseUnits('0.1', 24), // 100k
   flashMinterMaxFee: ethers.utils.parseUnits('10000', 0), // 100%
   flashMinterFee: 100, // 1.00%
-  hsmCapacity: ethers.utils.parseUnits('0.55', 24), // 550k
+  hsmCapacity: ethers.utils.parseUnits('1.0', 24), // 550k
 };
