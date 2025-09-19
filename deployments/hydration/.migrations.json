@@ -12,13 +12,13 @@
   "TokenImplementations:Hydration:aave-v3-core@1.19.3": 1731422191,
   "ReservesInit:Hydration:aave-v3-core@1.19.3": 1731422482,
   "PeripheryInit:Hydration:aave-v3-periphery@2.5.2": 1731422482,
-  "GhoToken": 1754178363,
-  "GhoOracle": 1754178373,
-  "GhoAToken": 1754178399,
-  "GhoStableDebt": 1754179058,
-  "GhoVariableDebt": 1754179494,
-  "GhoInterestRateStrategy": 1754179508,
-  "GhoDiscountRateStrategy": 1754179518,
-  "GhoFlashMinter": 1754179622,
-  "UiGhoDataProvider": 1754179632
+  "GhoToken": 1758028256,
+  "GhoOracle": 1758028270,
+  "GhoAToken": 1758028286,
+  "GhoStableDebt": 1758028297,
+  "GhoVariableDebt": 1758028333,
+  "GhoInterestRateStrategy": 1758028347,
+  "GhoDiscountRateStrategy": 1758028354,
+  "GhoFlashMinter": 1758028360,
+  "UiGhoDataProvider": 1758028363
 }
