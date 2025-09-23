@@ -15,6 +15,7 @@ import {
 } from '@galacticcouncil/aave-deploy-v3/dist/helpers/hydration-proposal';
 import ProposalDecoder from '@galacticcouncil/aave-deploy-v3/dist/helpers/proposal-decoder';
 import { GhoFlashMinter } from '../../types';
+import { evmAddress } from '@galacticcouncil/aave-deploy-v3/dist/helpers/hydration-proposal';
 
 task('hollar-setup', 'Deploy and Configure Hollar').setAction(async (params, hre) => {
   const { ethers } = hre;
@@ -273,8 +274,8 @@ task('hollar-setup', 'Deploy and Configure Hollar').setAction(async (params, hre
   const parseEther = (eth) => ethers.utils.parseEther(eth).toString();
   const max = parseEther('1111111');
   const coeficient = parseEther('0.995');
-  const rate = 100;
-  const buyBackFee = 100000;
+  const rate = 100000;
+  const buyBackFee = 100;
   const purchaseFee = 0;
   const hsmTxs = [
     tx.hsm.addCollateralAsset(
@@ -352,6 +353,14 @@ task('hollar-setup', 'Deploy and Configure Hollar').setAction(async (params, hre
   const aclManager = await getACLManager(await poolAddressesProvider.getACLManager());
   const addFlashBorrower = await aclManager.populateTransaction.addFlashBorrower(hsmAddress);
   hsm2txs.push(await aaveManagerCall({ ...addFlashBorrower, from: admin }));
+
+  const liquidationPalletAddress = await evmAddress(
+    '13UVJyLmnf5GY7A8T9iVusvdwjMa2qVc2kpKmxpfuVK6T6jg'
+  );
+  const addLiquidationPalletFlashBorrower = await aclManager.populateTransaction.addFlashBorrower(
+    liquidationPalletAddress
+  );
+  hsm2txs.push(await aaveManagerCall({ ...addLiquidationPalletFlashBorrower, from: admin }));
 
   hsm2txs.push(
     tx.multiTransactionPayment.addCurrency(222, '10,960,000,000,000,000,000,000'.replace(/,/g, ''))
