@@ -1,5 +1,5 @@
 import { DeployFunction } from 'hardhat-deploy/types';
-import { getPool } from '@aave/deploy-v3/dist/helpers/contract-getters';
+import { getPool } from '@galacticcouncil/aave-deploy-v3/dist/helpers/contract-getters';
 import { ZERO_ADDRESS } from '../helpers/constants';
 
 const func: DeployFunction = async function ({ getNamedAccounts, deployments, ...hre }) {
@@ -12,6 +12,7 @@ const func: DeployFunction = async function ({ getNamedAccounts, deployments, ..
     from: deployer,
     args: [pool.address],
     log: true,
+    gasLimit: 10_000_000,
   });
   const stableDebtImpl = await hre.ethers.getContract('GhoStableDebtToken');
   const initializeTx = await stableDebtImpl.initialize(

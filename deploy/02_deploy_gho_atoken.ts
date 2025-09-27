@@ -1,5 +1,5 @@
 import { DeployFunction } from 'hardhat-deploy/types';
-import { getPool } from '@aave/deploy-v3/dist/helpers/contract-getters';
+import { getPool } from '@galacticcouncil/aave-deploy-v3/dist/helpers/contract-getters';
 import { ZERO_ADDRESS } from '../helpers/constants';
 import { GhoAToken } from '../types';
 
@@ -13,6 +13,7 @@ const func: DeployFunction = async function ({ getNamedAccounts, deployments, ..
     from: deployer,
     args: [pool.address],
     log: true,
+    gasLimit: 10_000_000,
   });
   const aTokenImpl = (await hre.ethers.getContract('GhoAToken')) as GhoAToken;
   const initializeTx = await aTokenImpl.initialize(

@@ -1,30 +1,24 @@
 import { ethers } from 'ethers';
 import { ZERO_ADDRESS } from './constants';
-
-export const helperAddresses = {
-  wethWhale: '0xe78388b4ce79068e89bf8aa7f218ef6b9ab0e9d0',
-  usdcWhale: '0x55fe002aeff02f77364de339a1292923a15844b8',
-  stkAaveWhale: '0x32b61bb22cbe4834bc3e73dce85280037d944a4d',
-  aaveToken: '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9',
-  aaveWhale: '0x26a78d5b6d7a7aceedd1e6ee3229b372a624d8b7',
-};
+import { apyToAprPercent } from './apr';
 
 export const ghoTokenConfig = {
-  TOKEN_NAME: 'Gho Token',
-  TOKEN_SYMBOL: 'GHO',
+  TOKEN_NAME: 'Hydrated Dollar',
+  TOKEN_SYMBOL: 'HOLLAR',
   TOKEN_DECIMALS: 18,
 };
 
 export const ghoReserveConfig = {
-  INTEREST_RATE: ethers.utils.parseUnits('2.0', 25),
+  INTEREST_RATE: ethers.utils.parseUnits(apyToAprPercent(5).toString(), 25),
 };
 
 export const ghoEntityConfig = {
-  label: 'Aave V3 Mainnet Market',
+  label: 'Hydration Market',
   entityAddress: ZERO_ADDRESS,
-  mintLimit: ethers.utils.parseUnits('1.0', 27), // 100M
-  flashMinterLabel: 'GHO FlashMinter',
-  flashMinterCapacity: ethers.utils.parseUnits('1.0', 26), // 10M
-  flashMinterMaxFee: ethers.utils.parseUnits('10000', 0),
-  flashMinterFee: 100,
+  mintLimit: ethers.utils.parseUnits('2.0', 24), // 2M
+  flashMinterLabel: 'HOLLAR FlashMinter',
+  flashMinterCapacity: ethers.utils.parseUnits('0.1', 24), // 100k
+  flashMinterMaxFee: ethers.utils.parseUnits('10000', 0), // 100%
+  flashMinterFee: 100, // 1.00%
+  hsmCapacity: ethers.utils.parseUnits('1.0', 24), // 1M
 };
