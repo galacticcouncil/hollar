@@ -17,34 +17,19 @@ task('bigger-hsm-prop').setAction(async (_, hre) => {
 
   await hre.run('review-buckets');
 
-  const coeficient = parseEther('0.998').toString();
   const hsmTxs = [
-    tx.hsm.updateCollateralAsset(1003, null, coeficient, null, null, 1_500_000 * 10 ** 6),
-    tx.hsm.updateCollateralAsset(1002, null, coeficient, null, null, 1_500_000 * 10 ** 6),
-    tx.hsm.updateCollateralAsset(
-      1_000_745,
-      null,
-      null,
-      null,
-      null,
-      parseEther('900000').toString()
-    ),
-    tx.hsm.updateCollateralAsset(
-      1_000_625,
-      null,
-      null,
-      null,
-      null,
-      parseEther('900000').toString()
-    ),
+    tx.hsm.updateCollateralAsset(1003, null, null, null, null, 4_000_000 * 10 ** 6),
+    tx.hsm.updateCollateralAsset(1002, null, null, null, null, 4_000_000 * 10 ** 6),
   ];
 
   const txs = await Promise.all(getBatch().map((tx) => aaveManagerCall({ ...tx, from: admin })));
   txs.push(...hsmTxs);
-  let preimage = await generateProposalV2(txs, false);
+  let { proposal, whitelistedCall } = await generateProposalV2(txs, true);
   const decoder = new ProposalDecoder(hre);
   await decoder.init();
+  console.log('whitelist call hash:');
+  console.log(whitelistedCall.hash.toHex());
   console.log('submit preimages:');
-  console.log(preimage.toHex());
-  decoder.printTree(decoder.transformCall(preimage.toHuman()));
+  console.log(proposal.toHex());
+  decoder.printTree(decoder.transformCall(proposal.toHuman()));
 });
