@@ -18,8 +18,24 @@ task('bigger-hsm-prop').setAction(async (_, hre) => {
   await hre.run('review-buckets');
 
   const hsmTxs = [
-    tx.hsm.updateCollateralAsset(1003, null, null, null, null, 4_000_000 * 10 ** 6),
-    tx.hsm.updateCollateralAsset(1002, null, null, null, null, 4_000_000 * 10 ** 6),
+    tx.hsm.updateCollateralAsset(1003, null, null, null, null, 8_000_000 * 10 ** 6),
+    tx.hsm.updateCollateralAsset(1002, null, null, null, null, 8_000_000 * 10 ** 6),
+    tx.hsm.updateCollateralAsset(
+      1_000_745,
+      null,
+      null,
+      null,
+      null,
+      parseEther('2000000').toString()
+    ),
+    tx.hsm.updateCollateralAsset(
+      1_000_625,
+      null,
+      null,
+      null,
+      null,
+      parseEther('2000000').toString()
+    ),
   ];
 
   const txs = await Promise.all(getBatch().map((tx) => aaveManagerCall({ ...tx, from: admin })));

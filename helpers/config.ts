@@ -20,5 +20,5 @@ export const ghoEntityConfig = {
   flashMinterCapacity: ethers.utils.parseUnits('0.1', 24), // 100k
   flashMinterMaxFee: ethers.utils.parseUnits('10000', 0), // 100%
   flashMinterFee: 100, // 1.00%
-  hsmCapacity: ethers.utils.parseUnits('9.0', 24), // 9M
+  hsmCapacity: ethers.utils.parseUnits('18.0', 24), // 18M
 };
