@@ -9,7 +9,7 @@ export const ghoTokenConfig = {
 };
 
 export const ghoReserveConfig = {
-  INTEREST_RATE: ethers.utils.parseUnits(apyToAprPercent(5).toString(), 25),
+  INTEREST_RATE: ethers.utils.parseUnits(apyToAprPercent(4.5).toString(), 25),
 };
 
 export const ghoEntityConfig = {
