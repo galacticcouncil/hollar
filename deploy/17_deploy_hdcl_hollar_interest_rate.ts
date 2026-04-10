@@ -25,6 +25,6 @@ const func: DeployFunction = async function ({ getNamedAccounts, deployments, ..
 };
 
 func.id = 'GhoInterestRateStrategy-HDCL';
-func.tags = ['GhoInterestRateStrategy-HDCL', 'hdcl_gho_deploy'];
+func.tags = ['GhoInterestRateStrategy-HDCL', 'hdcl_hollar_deploy'];
 
 export default func;

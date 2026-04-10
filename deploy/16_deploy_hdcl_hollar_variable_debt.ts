@@ -21,8 +21,8 @@ const func: DeployFunction = async function ({ getNamedAccounts, deployments, ..
     ZERO_ADDRESS, // underlyingAsset
     ZERO_ADDRESS, // incentivesController
     0, // debtTokenDecimals
-    'GHO_VARIABLE_DEBT_HDCL_IMPL', // debtTokenName
-    'GHO_VARIABLE_DEBT_HDCL_IMPL', // debtTokenSymbol
+    'HOLLAR_VARIABLE_DEBT_HDCL_IMPL', // debtTokenName
+    'HOLLAR_VARIABLE_DEBT_HDCL_IMPL', // debtTokenSymbol
     0 // params
   );
   await initializeTx.wait();
@@ -32,6 +32,6 @@ const func: DeployFunction = async function ({ getNamedAccounts, deployments, ..
 };
 
 func.id = 'GhoVariableDebt-HDCL';
-func.tags = ['GhoVariableDebt-HDCL', 'hdcl_gho_deploy'];
+func.tags = ['GhoVariableDebt-HDCL', 'hdcl_hollar_deploy'];
 
 export default func;

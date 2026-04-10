@@ -1,6 +1,7 @@
 import { DeployFunction } from 'hardhat-deploy/types';
 import { getPool } from '@galacticcouncil/aave-deploy-v3/dist/helpers/contract-getters';
 import { ZERO_ADDRESS } from '../helpers/constants';
+import { GhoAToken } from '../types';
 
 const func: DeployFunction = async function ({ getNamedAccounts, deployments, ...hre }) {
   const { deploy } = deployments;
@@ -8,30 +9,34 @@ const func: DeployFunction = async function ({ getNamedAccounts, deployments, ..
 
   const pool = await getPool();
 
-  const stableDebtResult = await deploy('GhoStableDebtToken-HDCL', {
+  const aTokenResult = await deploy('GhoAToken-HDCL', {
     from: deployer,
-    contract: 'GhoStableDebtToken',
+    contract: 'GhoAToken',
     args: [pool.address],
     log: true,
     gasLimit: 10_000_000,
   });
-  const stableDebtImpl = await hre.ethers.getContract('GhoStableDebtToken-HDCL');
-  const initializeTx = await stableDebtImpl.initialize(
+  const aTokenImpl = (await hre.ethers.getContractAt(
+    'GhoAToken',
+    aTokenResult.address
+  )) as GhoAToken;
+  const initializeTx = await aTokenImpl.initialize(
     pool.address, // initializingPool
+    ZERO_ADDRESS, // treasury
     ZERO_ADDRESS, // underlyingAsset
     ZERO_ADDRESS, // incentivesController
-    0, // debtTokenDecimals
-    'GHO_STABLE_DEBT_HDCL_IMPL', // debtTokenName
-    'GHO_STABLE_DEBT_HDCL_IMPL', // debtTokenSymbol
-    0 // params
+    0, // aTokenDecimals
+    'HOLLAR_ATOKEN_HDCL_IMPL', // aTokenName
+    'HOLLAR_ATOKEN_HDCL_IMPL', // aTokenSymbol
+    '0x10' // params
   );
   await initializeTx.wait();
 
-  console.log(`GhoStableDebtToken-HDCL Implementation: ${stableDebtResult.address}`);
+  console.log(`GhoAToken-HDCL Implementation: ${aTokenResult.address}`);
   return true;
 };
 
-func.id = 'GhoStableDebt-HDCL';
-func.tags = ['GhoStableDebt-HDCL', 'hdcl_gho_deploy'];
+func.id = 'GhoAToken-HDCL';
+func.tags = ['GhoAToken-HDCL', 'hdcl_hollar_deploy'];
 
 export default func;
