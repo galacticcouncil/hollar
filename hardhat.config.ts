@@ -24,6 +24,11 @@ const hardhatConfig: HardhatUserConfig = {
     hardhat: hardhatNetworkSettings,
     [eHydrationNetwork.nice]: getCommonNetworkConfig(eHydrationNetwork.nice, 222222),
     [eHydrationNetwork.hydration]: getCommonNetworkConfig(eHydrationNetwork.hydration, 222222),
+    // String literals (not enum) because @galacticcouncil/aave-deploy-v3@1.59.0
+    // doesn't yet expose `lark` / `chopsticks` — they'll land when the package
+    // is bumped. Usage: RPC=<url> HARDHAT_NETWORK=lark|chopsticks npx hardhat ...
+    lark: getCommonNetworkConfig('lark', 222222),
+    chopsticks: getCommonNetworkConfig('chopsticks', 222222),
     goerli: getCommonNetworkConfig(eEthereumNetwork.goerli, 5),
     sepolia: getCommonNetworkConfig('sepolia', 11155111),
     localhost: {
