@@ -24,6 +24,7 @@ const hardhatConfig: HardhatUserConfig = {
     hardhat: hardhatNetworkSettings,
     [eHydrationNetwork.nice]: getCommonNetworkConfig(eHydrationNetwork.nice, 222222),
     [eHydrationNetwork.hydration]: getCommonNetworkConfig(eHydrationNetwork.hydration, 222222),
+    lark2: getCommonNetworkConfig('lark2', 222222),
     goerli: getCommonNetworkConfig(eEthereumNetwork.goerli, 5),
     sepolia: getCommonNetworkConfig('sepolia', 11155111),
     localhost: {

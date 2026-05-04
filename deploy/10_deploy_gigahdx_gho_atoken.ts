@@ -20,17 +20,23 @@ const func: DeployFunction = async function ({ getNamedAccounts, deployments, ..
     'GhoAToken',
     aTokenResult.address
   )) as GhoAToken;
-  const initializeTx = await aTokenImpl.initialize(
-    pool.address, // initializingPool
-    ZERO_ADDRESS, // treasury
-    ZERO_ADDRESS, // underlyingAsset
-    ZERO_ADDRESS, // incentivesController
-    0, // aTokenDecimals
-    'GHO_ATOKEN_GIGAHDX_IMPL', // aTokenName
-    'GHO_ATOKEN_GIGAHDX_IMPL', // aTokenSymbol
-    '0x10' // params
-  );
-  await initializeTx.wait();
+  try {
+    const initializeTx = await aTokenImpl.initialize(
+      pool.address, // initializingPool
+      ZERO_ADDRESS, // treasury
+      ZERO_ADDRESS, // underlyingAsset
+      ZERO_ADDRESS, // incentivesController
+      0, // aTokenDecimals
+      'GHO_ATOKEN_GIGAHDX_IMPL', // aTokenName
+      'GHO_ATOKEN_GIGAHDX_IMPL', // aTokenSymbol
+      '0x10', // params
+      { gasLimit: 2_000_000 }
+    );
+    await initializeTx.wait();
+  } catch (e: any) {
+    if (!e?.message?.includes('already been initialized')) throw e;
+    console.log('GhoAToken-GIGAHDX already initialized');
+  }
 
   console.log(`GhoAToken-GIGAHDX Implementation: ${aTokenResult.address}`);
   return true;

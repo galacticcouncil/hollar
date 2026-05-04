@@ -16,16 +16,22 @@ const func: DeployFunction = async function ({ getNamedAccounts, deployments, ..
     gasLimit: 10_000_000,
   });
   const variableDebtImpl = await hre.ethers.getContract('GhoVariableDebtToken-GIGAHDX');
-  const initializeTx = await variableDebtImpl.initialize(
-    pool.address, // initializingPool
-    ZERO_ADDRESS, // underlyingAsset
-    ZERO_ADDRESS, // incentivesController
-    0, // debtTokenDecimals
-    'GHO_VARIABLE_DEBT_GIGAHDX_IMPL', // debtTokenName
-    'GHO_VARIABLE_DEBT_GIGAHDX_IMPL', // debtTokenSymbol
-    0 // params
-  );
-  await initializeTx.wait();
+  try {
+    const initializeTx = await variableDebtImpl.initialize(
+      pool.address, // initializingPool
+      ZERO_ADDRESS, // underlyingAsset
+      ZERO_ADDRESS, // incentivesController
+      0, // debtTokenDecimals
+      'GHO_VARIABLE_DEBT_GIGAHDX_IMPL', // debtTokenName
+      'GHO_VARIABLE_DEBT_GIGAHDX_IMPL', // debtTokenSymbol
+      0, // params
+      { gasLimit: 2_000_000 }
+    );
+    await initializeTx.wait();
+  } catch (e: any) {
+    if (!e?.message?.includes('already been initialized')) throw e;
+    console.log('GhoVariableDebtToken-GIGAHDX already initialized');
+  }
 
   console.log(`GhoVariableDebtToken-GIGAHDX Implementation: ${variableDebtResult.address}`);
   return true;

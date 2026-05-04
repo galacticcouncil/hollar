@@ -24,6 +24,11 @@ export const NETWORKS_RPC_URL: Record<string, string> = {
   sepolia: 'https://rpc.sepolia.ethpandaops.io',
   [eHydrationNetwork.nice]: 'https://rpc.nice.hydration.cloud',
   [eHydrationNetwork.hydration]: process.env.RPC || 'https://rpc.hydradx.cloud',
+  // Local string key — installed @galacticcouncil/aave-deploy-v3 doesn't carry
+  // lark2 in its enum; we register it here so hardhat-deploy writes artifacts to
+  // hollar/deployments/lark2/ rather than polluting hollar/deployments/hydration/
+  // (which holds real mainnet artifacts).
+  lark2: process.env.RPC || 'https://2.lark.hydration.cloud',
 };
 
 const GAS_PRICE_PER_NET: Record<string, number> = {};
@@ -72,6 +77,8 @@ export const getCommonNetworkConfig = (networkName: string, chainId?: number) =>
   blockGasLimit: DEFAULT_BLOCK_GAS_LIMIT,
   chainId,
   gasPrice: GAS_PRICE_PER_NET[networkName] || undefined,
+  // Hydration/lark eth_estimateGas is unreliable; bump multiplier to avoid OOG reverts.
+  gasMultiplier: 20,
   accounts: [
     process.env.PRIV_KEY || 'd9b59470b079ffd6a0373c0870dcf7faf8c20f7340b6d05acbeb8a8a8473b131',
   ],

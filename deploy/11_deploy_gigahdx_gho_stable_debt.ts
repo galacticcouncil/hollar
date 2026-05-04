@@ -16,16 +16,22 @@ const func: DeployFunction = async function ({ getNamedAccounts, deployments, ..
     gasLimit: 10_000_000,
   });
   const stableDebtImpl = await hre.ethers.getContract('GhoStableDebtToken-GIGAHDX');
-  const initializeTx = await stableDebtImpl.initialize(
-    pool.address, // initializingPool
-    ZERO_ADDRESS, // underlyingAsset
-    ZERO_ADDRESS, // incentivesController
-    0, // debtTokenDecimals
-    'GHO_STABLE_DEBT_GIGAHDX_IMPL', // debtTokenName
-    'GHO_STABLE_DEBT_GIGAHDX_IMPL', // debtTokenSymbol
-    0 // params
-  );
-  await initializeTx.wait();
+  try {
+    const initializeTx = await stableDebtImpl.initialize(
+      pool.address, // initializingPool
+      ZERO_ADDRESS, // underlyingAsset
+      ZERO_ADDRESS, // incentivesController
+      0, // debtTokenDecimals
+      'GHO_STABLE_DEBT_GIGAHDX_IMPL', // debtTokenName
+      'GHO_STABLE_DEBT_GIGAHDX_IMPL', // debtTokenSymbol
+      0, // params
+      { gasLimit: 2_000_000 }
+    );
+    await initializeTx.wait();
+  } catch (e: any) {
+    if (!e?.message?.includes('already been initialized')) throw e;
+    console.log('GhoStableDebtToken-GIGAHDX already initialized');
+  }
 
   console.log(`GhoStableDebtToken-GIGAHDX Implementation: ${stableDebtResult.address}`);
   return true;
