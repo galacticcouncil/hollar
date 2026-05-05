@@ -8,6 +8,8 @@
 deployments/*
 !deployments/hydration
 !deployments/nice
+!deployments/lark
+# deployments/chopsticks is intentionally ignored — disposable local fork.
 /types
 
 /coverage

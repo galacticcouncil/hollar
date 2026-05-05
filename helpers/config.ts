@@ -12,6 +12,15 @@ export const ghoReserveConfig = {
   INTEREST_RATE: ethers.utils.parseUnits(apyToAprPercent(4.5).toString(), 25),
 };
 
+export const hdclReserveConfig = {
+  INTEREST_RATE: ethers.utils.parseUnits(apyToAprPercent(10).toString(), 25), // 10% APY
+};
+
+export const hdclEntityConfig = {
+  label: 'HDCL',
+  mintLimit: ethers.utils.parseUnits('1.0', 24), // 1M HOLLAR
+};
+
 export const ghoEntityConfig = {
   label: 'Hydration Market',
   entityAddress: ZERO_ADDRESS,

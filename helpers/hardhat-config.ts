@@ -24,6 +24,9 @@ export const NETWORKS_RPC_URL: Record<string, string> = {
   sepolia: 'https://rpc.sepolia.ethpandaops.io',
   [eHydrationNetwork.nice]: 'https://rpc.nice.hydration.cloud',
   [eHydrationNetwork.hydration]: process.env.RPC || 'https://rpc.hydradx.cloud',
+  // Matches aave-v3-deploy's split. Overridable via RPC env var.
+  lark: process.env.RPC || 'https://0.lark.hydration.cloud',
+  chopsticks: process.env.RPC || 'http://localhost:8000',
 };
 
 const GAS_PRICE_PER_NET: Record<string, number> = {};
