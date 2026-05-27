@@ -26,6 +26,8 @@ export const NETWORKS_RPC_URL: Record<string, string> = {
   [eHydrationNetwork.hydration]: process.env.RPC || 'https://rpc.hydradx.cloud',
   // Matches aave-v3-deploy's split. Overridable via RPC env var.
   lark: process.env.RPC || 'https://0.lark.hydration.cloud',
+  // 2.lark — current mainnet-state fork; HDCL vault + market live here.
+  lark2: process.env.RPC || 'https://2.lark.hydration.cloud',
   chopsticks: process.env.RPC || 'http://localhost:8000',
 };
 

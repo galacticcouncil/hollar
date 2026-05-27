@@ -28,6 +28,7 @@ const hardhatConfig: HardhatUserConfig = {
     // doesn't yet expose `lark` / `chopsticks` — they'll land when the package
     // is bumped. Usage: RPC=<url> HARDHAT_NETWORK=lark|chopsticks npx hardhat ...
     lark: getCommonNetworkConfig('lark', 222222),
+    lark2: getCommonNetworkConfig('lark2', 222222),
     chopsticks: getCommonNetworkConfig('chopsticks', 222222),
     goerli: getCommonNetworkConfig(eEthereumNetwork.goerli, 5),
     sepolia: getCommonNetworkConfig('sepolia', 11155111),
