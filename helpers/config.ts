@@ -12,12 +12,12 @@ export const ghoReserveConfig = {
   INTEREST_RATE: ethers.utils.parseUnits(apyToAprPercent(4.5).toString(), 25),
 };
 
-export const hdclReserveConfig = {
+export const bilReserveConfig = {
   INTEREST_RATE: ethers.utils.parseUnits(apyToAprPercent(10).toString(), 25), // 10% APY
 };
 
-export const hdclEntityConfig = {
-  label: 'HDCL',
+export const bilEntityConfig = {
+  label: 'BIL',
   mintLimit: ethers.utils.parseUnits('1.0', 24), // 1M HOLLAR
 };
 
