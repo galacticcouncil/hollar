@@ -1,12 +1,12 @@
 import { DeployFunction } from 'hardhat-deploy/types';
-import { ghoReserveConfig } from '../helpers/config';
+import { gigaHdxReserveConfig } from '../helpers/config';
 import { getPoolAddressesProvider } from '@galacticcouncil/aave-deploy-v3/dist/helpers/contract-getters';
 
 const func: DeployFunction = async function ({ getNamedAccounts, deployments, ...hre }) {
   const { deploy } = deployments;
   const { deployer } = await getNamedAccounts();
 
-  const { INTEREST_RATE } = ghoReserveConfig;
+  const { INTEREST_RATE } = gigaHdxReserveConfig;
 
   const addressesProvider = await getPoolAddressesProvider();
 
@@ -15,7 +15,7 @@ const func: DeployFunction = async function ({ getNamedAccounts, deployments, ..
     contract: 'GhoInterestRateStrategy',
     args: [
       addressesProvider.address, // addressesProvider
-      INTEREST_RATE, // variableBorrowRate (4.5% APY)
+      INTEREST_RATE, // variableBorrowRate (9% APY)
     ],
     log: true,
   });
