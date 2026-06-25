@@ -20,5 +20,9 @@
   "GhoInterestRateStrategy": 1758028347,
   "GhoDiscountRateStrategy": 1758028354,
   "GhoFlashMinter": 1758028360,
-  "UiGhoDataProvider": 1758028363
+  "UiGhoDataProvider": 1758028363,
+  "GhoAToken-GIGAHDX": 1777060070,
+  "GhoStableDebt-GIGAHDX": 1777060090,
+  "GhoVariableDebt-GIGAHDX": 1777060111,
+  "GhoInterestRateStrategy-GIGAHDX": 1777060116
 }

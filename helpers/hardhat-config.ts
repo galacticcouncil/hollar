@@ -29,6 +29,9 @@ export const NETWORKS_RPC_URL: Record<string, string> = {
   // 2.lark — current mainnet-state fork; BIL vault + market live here.
   lark2: process.env.RPC || 'https://2.lark.hydration.cloud',
   chopsticks: process.env.RPC || 'http://localhost:8000',
+  // GIGAHDX is its own market, so its GHO impls are staged under
+  // hollar/deployments/gigahdx/ (matches the aave-deploy NETWORK).
+  gigahdx: process.env.RPC || 'https://rpc.hydradx.cloud',
 };
 
 const GAS_PRICE_PER_NET: Record<string, number> = {};
@@ -76,7 +79,12 @@ export const getCommonNetworkConfig = (networkName: string, chainId?: number) =>
   url: process.env.RPC || NETWORKS_RPC_URL[networkName] || '',
   blockGasLimit: DEFAULT_BLOCK_GAS_LIMIT,
   chainId,
+  // Override HTTP provider timeout (ms) for slow endpoints (e.g. a chopsticks
+  // fork). Unset => hardhat default; harmless on fast (real) RPCs.
+  ...(process.env.RPC_TIMEOUT ? { timeout: Number(process.env.RPC_TIMEOUT) } : {}),
   gasPrice: GAS_PRICE_PER_NET[networkName] || undefined,
+  // Hydration/lark eth_estimateGas is unreliable; bump multiplier to avoid OOG reverts.
+  gasMultiplier: 20,
   accounts: [
     process.env.PRIV_KEY || 'd9b59470b079ffd6a0373c0870dcf7faf8c20f7340b6d05acbeb8a8a8473b131',
   ],
