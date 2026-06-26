@@ -32,6 +32,7 @@ const hardhatConfig: HardhatUserConfig = {
     lark2: getCommonNetworkConfig('lark2', 222222),
     chopsticks: getCommonNetworkConfig('chopsticks', 222222),
     gigahdx: getCommonNetworkConfig('gigahdx', 222222),
+    bil: getCommonNetworkConfig('bil', 222222),
     goerli: getCommonNetworkConfig(eEthereumNetwork.goerli, 5),
     sepolia: getCommonNetworkConfig('sepolia', 11155111),
     localhost: {

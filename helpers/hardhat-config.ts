@@ -32,6 +32,9 @@ export const NETWORKS_RPC_URL: Record<string, string> = {
   // GIGAHDX is its own market, so its GHO impls are staged under
   // hollar/deployments/gigahdx/ (matches the aave-deploy NETWORK).
   gigahdx: process.env.RPC || 'https://rpc.hydradx.cloud',
+  // BIL is its own market, so its GHO impls are staged under
+  // hollar/deployments/bil/ (matches the aave-deploy NETWORK).
+  bil: process.env.RPC || 'https://rpc.hydradx.cloud',
 };
 
 const GAS_PRICE_PER_NET: Record<string, number> = {};
