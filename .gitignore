@@ -10,6 +10,7 @@ deployments/*
 !deployments/nice
 !deployments/lark
 !deployments/gigahdx
+!deployments/bil
 # deployments/chopsticks is intentionally ignored — disposable local fork.
 /types
 
