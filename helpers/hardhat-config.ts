@@ -24,14 +24,17 @@ export const NETWORKS_RPC_URL: Record<string, string> = {
   sepolia: 'https://rpc.sepolia.ethpandaops.io',
   [eHydrationNetwork.nice]: 'https://rpc.nice.hydration.cloud',
   [eHydrationNetwork.hydration]: process.env.RPC || 'https://rpc.hydradx.cloud',
-  // Local string key — installed @galacticcouncil/aave-deploy-v3 doesn't carry
-  // lark2 in its enum; we register it here so hardhat-deploy writes artifacts to
-  // hollar/deployments/lark2/ rather than polluting hollar/deployments/hydration/
-  // (which holds real mainnet artifacts).
+  // Matches aave-v3-deploy's split. Overridable via RPC env var.
+  lark: process.env.RPC || 'https://0.lark.hydration.cloud',
+  // 2.lark — current mainnet-state fork; BIL vault + market live here.
   lark2: process.env.RPC || 'https://2.lark.hydration.cloud',
-  // Same rationale as lark2: GIGAHDX is its own market, so its GHO impls are
-  // staged under hollar/deployments/gigahdx/ (matches the aave-deploy NETWORK).
+  chopsticks: process.env.RPC || 'http://localhost:8000',
+  // GIGAHDX is its own market, so its GHO impls are staged under
+  // hollar/deployments/gigahdx/ (matches the aave-deploy NETWORK).
   gigahdx: process.env.RPC || 'https://rpc.hydradx.cloud',
+  // BIL is its own market, so its GHO impls are staged under
+  // hollar/deployments/bil/ (matches the aave-deploy NETWORK).
+  bil: process.env.RPC || 'https://rpc.hydradx.cloud',
 };
 
 const GAS_PRICE_PER_NET: Record<string, number> = {};

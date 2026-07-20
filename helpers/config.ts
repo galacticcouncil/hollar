@@ -12,6 +12,15 @@ export const ghoReserveConfig = {
   INTEREST_RATE: ethers.utils.parseUnits(apyToAprPercent(4.5).toString(), 25),
 };
 
+export const bilReserveConfig = {
+  INTEREST_RATE: ethers.utils.parseUnits(apyToAprPercent(10).toString(), 25), // 10% APY
+};
+
+export const bilEntityConfig = {
+  label: 'BIL',
+  mintLimit: ethers.utils.parseUnits('1.0', 24), // 1M HOLLAR
+};
+
 // GIGAHDX market borrows HOLLAR at a higher fixed rate than the Hydration market.
 // apyToAprPercent converts the target APY to the nominal APR Aave compounds
 // per-second, so the effective borrow APY is exactly 9%.
