@@ -94,7 +94,7 @@ task(
     const tx = await poolConfigurator.populateTransaction.setReserveInterestRateStrategyAddress(
       gho.address,
       newStrategy.address,
-      { gasLimit: 200_000 }
+      { gasLimit: 400_000 }
     );
     addTransaction(tx);
 
