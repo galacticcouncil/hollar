@@ -27,7 +27,7 @@ export const gigaHdxEntityConfig = {
 export const ghoEntityConfig = {
   label: 'Hydration Market',
   entityAddress: ZERO_ADDRESS,
-  mintLimit: ethers.utils.parseUnits('12.0', 24), // 12M
+  mintLimit: ethers.utils.parseUnits('11.0', 24), // 11M
   flashMinterLabel: 'HOLLAR FlashMinter',
   flashMinterCapacity: ethers.utils.parseUnits('0.1', 24), // 100k
   flashMinterMaxFee: ethers.utils.parseUnits('10000', 0), // 100%

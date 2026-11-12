@@ -1,0 +1,55 @@
+{
+  "fork": "ws://localhost:18098",
+  "pinnedBlock": 16924712,
+  "spec": 458,
+  "before": {
+    "capacity": "13000000000000000000000000",
+    "level": "10702263934128958238817166"
+  },
+  "motion": [
+    "whitelist.CallWhitelisted {\"callHash\":\"0x0c782449a4e6655a7ad2413081ef8bb436bf688c8ea35f6b60897cbda96d9462\"}",
+    "technicalCommittee.Executed {\"proposalHash\":\"0x9765d267d9a4ddb7984691b5ad5e31dea2f212d16710b3c2a2a38b80883fe973\",\"result\":\"Ok\"}"
+  ],
+  "whitelisted": true,
+  "noted": [
+    "preimage.Noted {\"hash_\":\"0x41583bacc56f2e117b8cebc026b2e49c51cb8b0e9bac2b623e32d3513fdeb8f6\"}"
+  ],
+  "enactmentBlock": 16924717,
+  "events": [
+    "evm.Log {\"log\":{\"address\":\"0x531a654d1696ed52e7275a8cede955e82620f99a\",\"topics\":[\"0xc795c0a4927c3b6645e4e49a5a519af936b3c1c0e4c323a3f7251063f3f4bb0e\",\"0x0000000000000000000000008c0f3b9602374198974d2b2679d14a386f5b108e\"],\"data\":\"0x0000000000000000000000000000000000000000000ac0db698068112d00000000000000000000000000000000000000000000000009195731e2ce35eb000000\"}}",
+    "evm.Executed {\"address\":\"0x531a654d1696ed52e7275a8cede955e82620f99a\"}",
+    "dispatcher.AaveManagerCallDispatched {\"callHash\":\"0xad4bc4fc29c5ad2a623e1a612eefb4425402a7247041710b0a84c4040c74a667\",\"result\":{\"Ok\":{\"actualWeight\":{\"refTime\":\"733,818,000\",\"proofSize\":\"8,419\"},\"paysFee\":\"No\"}}}",
+    "utility.ItemCompleted {}",
+    "utility.BatchCompleted {}",
+    "whitelist.WhitelistedCallDispatched {\"callHash\":\"0x0c782449a4e6655a7ad2413081ef8bb436bf688c8ea35f6b60897cbda96d9462\",\"result\":{\"Ok\":{\"actualWeight\":{\"refTime\":\"912,052,985\",\"proofSize\":\"11,425\"},\"paysFee\":\"Yes\"}}}",
+    "scheduler.Dispatched {\"task\":[\"16,924,717\",\"0\"],\"id\":null,\"result\":\"Ok\"}"
+  ],
+  "logs": [
+    {
+      "address": "0x531a654d1696ed52e7275a8cede955e82620f99a",
+      "topics": [
+        "0xc795c0a4927c3b6645e4e49a5a519af936b3c1c0e4c323a3f7251063f3f4bb0e",
+        "0x0000000000000000000000008c0f3b9602374198974d2b2679d14a386f5b108e"
+      ],
+      "data": "0x0000000000000000000000000000000000000000000ac0db698068112d00000000000000000000000000000000000000000000000009195731e2ce35eb000000"
+    }
+  ],
+  "after": {
+    "capacity": "11000000000000000000000000",
+    "level": "10702263934128958238817166"
+  },
+  "whitelistedAfter": false,
+  "checks": {
+    "whitelistedByTc": true,
+    "schedulerDispatchedOk": true,
+    "whitelistDispatched": true,
+    "aaveManagerOk": true,
+    "evmExecuted": true,
+    "batchCompleted": true,
+    "bucketLog": true,
+    "capacity11M": true,
+    "levelUnchanged": true,
+    "whitelistConsumed": true
+  },
+  "pass": true
+}
