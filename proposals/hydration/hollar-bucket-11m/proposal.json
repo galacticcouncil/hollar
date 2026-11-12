@@ -1,0 +1,104 @@
+{
+  "network": "hydration",
+  "block": 16924698,
+  "facilitator": "0x8C0f3b9602374198974d2B2679d14a386f5b108e",
+  "capacity": {
+    "from": "13000000000000000000000000",
+    "to": "11000000000000000000000000"
+  },
+  "evm": {
+    "source": "0xaa7e0000000000000000000000000000000aa7e0",
+    "target": "0x531a654d1696ED52e7275A8cede955E82620f99a",
+    "gasLimit": 200000
+  },
+  "whitelistedCall": {
+    "hex": "0x0d020428015a01aa7e0000000000000000000000000000000aa7e0531a654d1696ed52e7275a8cede955e82620f99a1101af93df570000000000000000000000008c0f3b9602374198974d2b2679d14a386f5b108e00000000000000000000000000000000000000000009195731e2ce35eb0000000000000000000000000000000000000000000000000000000000000000000000400d0300000000000046c3230000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x0c782449a4e6655a7ad2413081ef8bb436bf688c8ea35f6b60897cbda96d9462",
+    "length": 193
+  },
+  "preimage": {
+    "track": "WhitelistedCaller",
+    "hex": "0x27030d020428015a01aa7e0000000000000000000000000000000aa7e0531a654d1696ed52e7275a8cede955e82620f99a1101af93df570000000000000000000000008c0f3b9602374198974d2b2679d14a386f5b108e00000000000000000000000000000000000000000009195731e2ce35eb0000000000000000000000000000000000000000000000000000000000000000000000400d0300000000000046c3230000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x41583bacc56f2e117b8cebc026b2e49c51cb8b0e9bac2b623e32d3513fdeb8f6",
+    "length": 195
+  },
+  "motion": {
+    "call": "0x19021027000c782449a4e6655a7ad2413081ef8bb436bf688c8ea35f6b60897cbda96d946288",
+    "members": 7,
+    "threshold": 4,
+    "lengthBound": 34,
+    "proposal": "0x27000c782449a4e6655a7ad2413081ef8bb436bf688c8ea35f6b60897cbda96d9462",
+    "proposalHash": "0x9765d267d9a4ddb7984691b5ad5e31dea2f212d16710b3c2a2a38b80883fe973"
+  },
+  "referendum": {
+    "origin": {
+      "Origins": "WhitelistedCaller"
+    },
+    "track": {
+      "id": 1,
+      "name": "whitelisted_caller",
+      "decisionDeposit": "50000000000000000",
+      "preparePeriod": 300,
+      "decisionPeriod": 129600,
+      "confirmPeriod": 7200,
+      "minEnactmentPeriod": 300
+    },
+    "notePreimage": "0x0f000d0327030d020428015a01aa7e0000000000000000000000000000000aa7e0531a654d1696ed52e7275a8cede955e82620f99a1101af93df570000000000000000000000008c0f3b9602374198974d2b2679d14a386f5b108e00000000000000000000000000000000000000000009195731e2ce35eb0000000000000000000000000000000000000000000000000000000000000000000000400d0300000000000046c3230000000000000000000000000000000000000000000000000000000000000000",
+    "submit": "0x250026000241583bacc56f2e117b8cebc026b2e49c51cb8b0e9bac2b623e32d3513fdeb8f6c30000000101000000"
+  },
+  "validation": {
+    "liveDryRun": {
+      "block": 16924771,
+      "spec": 458,
+      "rpc": "wss://hdx.tarn.hydration.cloud",
+      "innerAsRoot": {
+        "Ok": {
+          "actualWeight": {
+            "refTime": "912,052,985",
+            "proofSize": "11,425"
+          },
+          "paysFee": "Yes"
+        }
+      },
+      "outerBeforeWhitelisting": "Whitelist.CallIsNotWhitelisted (module 39, error 3)"
+    },
+    "evmCall": {
+      "block": 16924712,
+      "rpcs": ["https://hdx.tarn.hydration.cloud", "https://hdx.shellfish.hydration.cloud"],
+      "ethCall": "ok",
+      "estimateGas": 47528
+    },
+    "forkEnactment": {
+      "block": 16924712,
+      "spec": 458,
+      "enactmentBlock": 16924717,
+      "before": {
+        "capacity": "13000000000000000000000000",
+        "level": "10702263934128958238817166"
+      },
+      "after": {
+        "capacity": "11000000000000000000000000",
+        "level": "10702263934128958238817166"
+      },
+      "checks": {
+        "whitelistedByTc": true,
+        "schedulerDispatchedOk": true,
+        "whitelistDispatched": true,
+        "aaveManagerOk": true,
+        "evmExecuted": true,
+        "batchCompleted": true,
+        "bucketLog": true,
+        "capacity11M": true,
+        "levelUnchanged": true,
+        "whitelistConsumed": true
+      },
+      "pass": true,
+      "mintCap": {
+        "from": "0x8C0f3b9602374198974d2B2679d14a386f5b108e",
+        "headroom": "297736065871041761182834",
+        "mintHeadroom": "ok",
+        "mintHeadroomPlusOne": "reverts FACILITATOR_BUCKET_CAPACITY_EXCEEDED"
+      }
+    }
+  }
+}
