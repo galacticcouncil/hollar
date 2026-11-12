@@ -8,8 +8,11 @@ export const ghoTokenConfig = {
   TOKEN_DECIMALS: 18,
 };
 
+// Hydration market HOLLAR borrow rate. The value is the target APY; apyToAprPercent
+// turns it into the nominal per-second APR the strategy stores (5.5% APY = 5.3541% APR).
+// History: 5% at launch (2025-09), 4.5% from 2026-03-03, 5.5% proposed 2026-11.
 export const ghoReserveConfig = {
-  INTEREST_RATE: ethers.utils.parseUnits(apyToAprPercent(4.5).toString(), 25),
+  INTEREST_RATE: ethers.utils.parseUnits(apyToAprPercent(5.5).toString(), 25),
 };
 
 // GIGAHDX market borrows HOLLAR at a higher fixed rate than the Hydration market.
