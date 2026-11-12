@@ -1,0 +1,96 @@
+{
+  "task": "review-interest-rate-prop",
+  "network": "hydration",
+  "chainId": 222222,
+  "observedBlock": 16924093,
+  "track": "EconomicParameters",
+  "strategy": "0x382B1A0A1728A747Ccc0ac8fd3D225f76F2A5944",
+  "gasLimit": 400000,
+  "preimage": "0x0d020428015a01aa7e0000000000000000000000000000000aa7e0e64c38e2fa00dfe4f1d0b92f75b8e44ebdf292e411011d2118f9000000000000000000000000531a654d1696ed52e7275a8cede955e82620f99a000000000000000000000000382b1a0a1728a747ccc0ac8fd3d225f76f2a59440000000000000000000000000000000000000000000000000000000000000000801a0600000000000046c3230000000000000000000000000000000000000000000000000000000000000000",
+  "hash": "0x1a453c4b5ae08b30d45b128b4dbb78c6560696efdbeaea32ab0f2654914c316c",
+  "length": 193,
+  "submitted": false,
+  "commit": "cf036c76c28541eccf2f8ddcc59d764cf6d905db",
+  "evmCall": {
+    "from": "0xaa7e0000000000000000000000000000000aa7e0",
+    "to": "0xe64c38e2fa00dfe4f1d0b92f75b8e44ebdf292e4",
+    "data": "0x1d2118f9000000000000000000000000531a654d1696ed52e7275a8cede955e82620f99a000000000000000000000000382b1a0a1728a747ccc0ac8fd3d225f76f2a5944",
+    "value": "0x0",
+    "gas": "0x61a80",
+    "maxFeePerGas": "0x23c34600"
+  },
+  "specVersion": 458,
+  "decodedCall": {
+    "args": {
+      "calls": [
+        {
+          "args": {
+            "call": {
+              "args": {
+                "source": "0xaa7e0000000000000000000000000000000aa7e0",
+                "target": "0xe64c38e2fa00dfe4f1d0b92f75b8e44ebdf292e4",
+                "input": "0x1d2118f9000000000000000000000000531a654d1696ed52e7275a8cede955e82620f99a000000000000000000000000382b1a0a1728a747ccc0ac8fd3d225f76f2a5944",
+                "value": "0",
+                "gas_limit": "400,000",
+                "max_fee_per_gas": "600,000,000",
+                "max_priority_fee_per_gas": null,
+                "nonce": null,
+                "access_list": [],
+                "authorization_list": []
+              },
+              "method": "call",
+              "section": "evm"
+            }
+          },
+          "method": "dispatchAsAaveManager",
+          "section": "dispatcher"
+        }
+      ]
+    },
+    "method": "batchAll",
+    "section": "utility"
+  },
+  "encodingValidated": true,
+  "gasValidation": [
+    {
+      "endpoint": "https://hdx.tarn.hydration.cloud",
+      "blockNumber": 16924093,
+      "blockHash": "0x4bb56cf6eec29c3291cfa3103f9cc2eb9e51baf9bbbb3055a7475f9e4de702c0",
+      "gasLimit": 400000,
+      "ethCall": "success",
+      "estimatedGas": 281562,
+      "calldataSource": "decoded from regenerated proposal preimage"
+    },
+    {
+      "endpoint": "https://hdx.shellfish.hydration.cloud",
+      "blockNumber": 16924093,
+      "blockHash": "0x4bb56cf6eec29c3291cfa3103f9cc2eb9e51baf9bbbb3055a7475f9e4de702c0",
+      "gasLimit": 400000,
+      "ethCall": "success",
+      "estimatedGas": 281562,
+      "calldataSource": "decoded from regenerated proposal preimage"
+    }
+  ],
+  "evmCallValidated": true,
+  "runtimeDryRun": {
+    "origin": {
+      "Origins": "EconomicParameters"
+    },
+    "blockNumber": 16924093,
+    "substrateBlockHash": "0xb5c28aa4e16f8fa4a25210de8df3496ae1950837ee41232eece133f035d82df1",
+    "dispatchSuccess": true,
+    "aaveManagerCallDispatched": "Ok",
+    "evmExecuted": true,
+    "batchCompleted": true,
+    "rateStrategyChanged": {
+      "asset": "0x531a654d1696ED52e7275A8cede955E82620f99a",
+      "oldStrategy": "0x39DfB27D814DB32F904a17560837c9Be8BF1B761",
+      "newStrategy": "0x382B1A0A1728A747Ccc0ac8fd3D225f76F2A5944"
+    },
+    "actualWeight": {
+      "refTime": 2271652985,
+      "proofSize": 25021
+    }
+  },
+  "readyForSubmission": true
+}

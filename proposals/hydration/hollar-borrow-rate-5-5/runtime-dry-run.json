@@ -1,0 +1,190 @@
+{
+  "blockNumber": 16924093,
+  "substrateBlockHash": "0xb5c28aa4e16f8fa4a25210de8df3496ae1950837ee41232eece133f035d82df1",
+  "origin": {
+    "Origins": "EconomicParameters"
+  },
+  "preimageHash": "0x1a453c4b5ae08b30d45b128b4dbb78c6560696efdbeaea32ab0f2654914c316c",
+  "result": {
+    "ok": {
+      "executionResult": {
+        "ok": {
+          "actualWeight": {
+            "refTime": 2271652985,
+            "proofSize": 25021
+          },
+          "paysFee": "Yes"
+        }
+      },
+      "emittedEvents": [
+        {
+          "index": "0x4d08",
+          "data": [20, "12ZuLmUq65u1KyKWDQewpbHyWfx1V9Xj8iL6wzsvH5Dv2Fef", 2095966000000]
+        },
+        {
+          "index": "0x4d0a",
+          "data": [20, "12ZuLmUq65u1KyKWDQewpbHyWfx1V9Xj8iL6wzsvH5Dv2Fef", 1634523365355]
+        },
+        {
+          "index": "0x4d0a",
+          "data": [20, "13UVJyLnbVp9RBZYFwFGyDvVd1y27Tt8tkntv6Q7JVPhFsTB", 461442634645]
+        },
+        {
+          "index": "0x4f02",
+          "data": [20, "13UVJyLnbVp9RBZYFwFGyDvVd1y27Tt8tkntv6Q7JVPhFsTB", 461442634645]
+        },
+        {
+          "index": "0x5a00",
+          "data": [
+            {
+              "address": "0xe64c38e2fa00dfe4f1d0b92f75b8e44ebdf292e4",
+              "topics": [
+                "0xdb8dada53709ce4988154324196790c2e4a60c377e1256790946f83b87db3c33",
+                "0x000000000000000000000000531a654d1696ed52e7275a8cede955e82620f99a"
+              ],
+              "data": "0x00000000000000000000000039dfb27d814db32f904a17560837c9be8bf1b761000000000000000000000000382b1a0a1728a747ccc0ac8fd3d225f76f2a5944"
+            }
+          ]
+        },
+        {
+          "index": "0x5a03",
+          "data": ["0xe64c38e2fa00dfe4f1d0b92f75b8e44ebdf292e4"]
+        },
+        {
+          "index": "0x2801",
+          "data": [
+            "0x5d3037811fb36f48bd1947086952e70c632528f5c05f12a11fbacc62801174a9",
+            {
+              "ok": {
+                "actualWeight": {
+                  "refTime": 2093418000,
+                  "proofSize": 22015
+                },
+                "paysFee": "No"
+              }
+            }
+          ]
+        },
+        {
+          "index": "0x0d03",
+          "data": []
+        },
+        {
+          "index": "0x0d01",
+          "data": []
+        }
+      ],
+      "localXcm": null,
+      "forwardedXcms": []
+    }
+  },
+  "human": {
+    "Ok": {
+      "executionResult": {
+        "Ok": {
+          "actualWeight": {
+            "refTime": "2,271,652,985",
+            "proofSize": "25,021"
+          },
+          "paysFee": "Yes"
+        }
+      },
+      "emittedEvents": [
+        {
+          "method": "Withdrawn",
+          "section": "tokens",
+          "index": "0x4d08",
+          "data": {
+            "currencyId": "20",
+            "who": "12ZuLmUq65u1KyKWDQewpbHyWfx1V9Xj8iL6wzsvH5Dv2Fef",
+            "amount": "2,095,966,000,000"
+          }
+        },
+        {
+          "method": "Deposited",
+          "section": "tokens",
+          "index": "0x4d0a",
+          "data": {
+            "currencyId": "20",
+            "who": "12ZuLmUq65u1KyKWDQewpbHyWfx1V9Xj8iL6wzsvH5Dv2Fef",
+            "amount": "1,634,523,365,355"
+          }
+        },
+        {
+          "method": "Deposited",
+          "section": "tokens",
+          "index": "0x4d0a",
+          "data": {
+            "currencyId": "20",
+            "who": "13UVJyLnbVp9RBZYFwFGyDvVd1y27Tt8tkntv6Q7JVPhFsTB",
+            "amount": "461,442,634,645"
+          }
+        },
+        {
+          "method": "Deposited",
+          "section": "currencies",
+          "index": "0x4f02",
+          "data": {
+            "currencyId": "20",
+            "who": "13UVJyLnbVp9RBZYFwFGyDvVd1y27Tt8tkntv6Q7JVPhFsTB",
+            "amount": "461,442,634,645"
+          }
+        },
+        {
+          "method": "Log",
+          "section": "evm",
+          "index": "0x5a00",
+          "data": {
+            "log": {
+              "address": "0xe64c38e2fa00dfe4f1d0b92f75b8e44ebdf292e4",
+              "topics": [
+                "0xdb8dada53709ce4988154324196790c2e4a60c377e1256790946f83b87db3c33",
+                "0x000000000000000000000000531a654d1696ed52e7275a8cede955e82620f99a"
+              ],
+              "data": "0x00000000000000000000000039dfb27d814db32f904a17560837c9be8bf1b761000000000000000000000000382b1a0a1728a747ccc0ac8fd3d225f76f2a5944"
+            }
+          }
+        },
+        {
+          "method": "Executed",
+          "section": "evm",
+          "index": "0x5a03",
+          "data": {
+            "address": "0xe64c38e2fa00dfe4f1d0b92f75b8e44ebdf292e4"
+          }
+        },
+        {
+          "method": "AaveManagerCallDispatched",
+          "section": "dispatcher",
+          "index": "0x2801",
+          "data": {
+            "callHash": "0x5d3037811fb36f48bd1947086952e70c632528f5c05f12a11fbacc62801174a9",
+            "result": {
+              "Ok": {
+                "actualWeight": {
+                  "refTime": "2,093,418,000",
+                  "proofSize": "22,015"
+                },
+                "paysFee": "No"
+              }
+            }
+          }
+        },
+        {
+          "method": "ItemCompleted",
+          "section": "utility",
+          "index": "0x0d03",
+          "data": {}
+        },
+        {
+          "method": "BatchCompleted",
+          "section": "utility",
+          "index": "0x0d01",
+          "data": {}
+        }
+      ],
+      "localXcm": null,
+      "forwardedXcms": []
+    }
+  }
+}
