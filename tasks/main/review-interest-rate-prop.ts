@@ -14,34 +14,42 @@ import ProposalDecoder from '@galacticcouncil/aave-deploy-v3/dist/helpers/propos
 task(
   'review-interest-rate-prop',
   'Generate proposal to update interest rate strategy if config differs from on-chain'
-).setAction(async (_, hre) => {
-  await hre.run('network-check');
-  const admin = POOL_ADMIN[hre.network.name];
+)
+  .addOptionalParam('strategy', 'Address of an already deployed GhoInterestRateStrategy')
+  .setAction(async ({ strategy }: { strategy?: string }, hre) => {
+    await hre.run('network-check');
+    const admin = POOL_ADMIN[hre.network.name];
 
-  // Clear any existing batch transactions
-  clearBatch();
+    // Clear any existing batch transactions
+    clearBatch();
 
-  // Run review-interest-rate which will add transactions to the batch if needed
-  await hre.run('review-interest-rate');
+    // Run review-interest-rate which will add transactions to the batch if needed
+    await hre.run('review-interest-rate', { strategy });
 
-  const batch = getBatch();
-  if (batch.length === 0) {
-    console.log('No interest rate changes needed - no proposal generated');
-    return;
-  }
+    const batch = getBatch();
+    if (batch.length === 0) {
+      console.log('No interest rate changes needed - no proposal generated');
+      return;
+    }
 
-  // Convert batch transactions to Aave manager calls
-  const txs = await Promise.all(batch.map((tx) => aaveManagerCall({ ...tx, from: admin })));
+    // Convert batch transactions to Aave manager calls
+    const txs = await Promise.all(batch.map((tx) => aaveManagerCall({ ...tx, from: admin })));
 
-  // Generate and encode proposal (non-whitelisted)
-  let proposal = await generateProposalV2(txs, false);
+    // Generate and encode proposal (non-whitelisted)
+    let proposal = await generateProposalV2(txs, false);
 
-  const decoder = new ProposalDecoder(hre);
-  await decoder.init();
+    const decoder = new ProposalDecoder(hre);
+    await decoder.init();
 
-  console.log('\n=== INTEREST RATE UPDATE PROPOSAL ===\n');
-  console.log('submit preimage:');
-  console.log(proposal.toHex());
-  console.log('\nDecoded proposal structure:');
-  decoder.printTree(decoder.transformCall(proposal.toHuman()));
-});
+    console.log('\n=== INTEREST RATE UPDATE PROPOSAL ===\n');
+    console.log('submit preimage (EconomicParameters track):');
+    console.log(proposal.toHex());
+    console.log(
+      'preimage hash:',
+      proposal.hash.toHex(),
+      'length:',
+      (proposal.toHex().length - 2) / 2
+    );
+    console.log('\nDecoded proposal structure:');
+    decoder.printTree(decoder.transformCall(proposal.toHuman()));
+  });
